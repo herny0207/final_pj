@@ -30,21 +30,3 @@
 ### C. 軟體規格
 *   **開發語言：** C++ (Arduino IDE) / Python (後端分析)。
 *   **通訊協議：** HTTP Post 傳輸至網頁。
-
-## 4. Detail Implementation (詳細實作邏輯)
-
-本專案的核心在於「進出事件判斷邏輯」。我們將感測區域劃分為 **Gate A (遠端)** 與 **Gate B (近端)**：
-
-**進出狀態機 (State Machine) 演算法：**
-*   **進入 (Entry) 判定:** 目標出現在 Gate A $\rightarrow$ 移動至 Gate B $\rightarrow$ 訊號於 Gate B 消失 = Count + 1。
-*   **離開 (Exit) 判定:** 目標出現在 Gate B $\rightarrow$ 移動至 Gate A $\rightarrow$ 訊號於 Gate A 消失 = Count - 1。
-*   **雜訊過濾:** 設定能量閾值（Energy Threshold），排除門外路人經過（未進入 Gate B）或窗簾飄動導致的誤觸。
-
-## 5. Abstract (摘要 - 總結全文)
-
-*   **[Motivation]** 隨著智慧化管理的普及，即時掌握場地人數已成為智慧教室與節能監控的重要需求。
-*   **[However]** 現有影像辨識技術常因隱私問題與低光源環境受到限制，而紅外線感測則難以應對多人進出的精準計數。
-*   **[Cure]** 本研究提出一套基於毫米波雷達技術的人數追蹤系統，旨在解決上述隱私與誤判難題。
-*   **[Development]** 系統採用 ESP32 結合 HLK-LD2410 感測器，透過開發一套雙區位移偵測演算法（State Machine），精確判斷使用者的進出路徑與行為。
-*   **[Experiments]** 我們在標準門口的環境下進行了多場景壓力測試。
-*   **[Findings]** 實驗結果顯示，本系統不僅能有效區分進出方向，且在靜止人體偵測上表現優異，提供了一種高隱私、全天候且低成本的場域人流解決方案。
